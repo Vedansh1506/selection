@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Selection Process</title>
+<style>
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body{
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+background: #050801;
+font-family: 'Raleway', sans-serif;
+}
+button{
+padding: 25px 30px;
+background-color: #050801;
+color: #03e9f4;
+font-weight: bold;
+border: none;
+border-radius: 5px;
+letter-spacing: 4px;
+overflow: hidden;
+transition: 0.5s;
+cursor: pointer;
+}
+button:hover{
+background: #03e9f4;
+color: #050801;
+box-shadow: 0 0 5px #03e9f4,0 0 25px #03e9f4,0 0 50px #03e9f4,0 0 200px
+#03e9f4;
+-webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+}
+</style>
+<script>
+function validateMobileNumber(mobileNumber) {
+var regex = /^[0-9]{10}$/;
+return regex.test(mobileNumber);
+}
+function validateEmail(email) {
+var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+return regex.test(email);
+}
+function performSelectionProcess() {
+var studentName = prompt("Enter your name:");
+switch (studentName) {
+case null:
+alert("No name entered. Please refresh the page and try again.");
+return;
+default:
+alert("Welcome " + studentName + " to the website.");
+var cgpa = parseFloat(prompt("Enter your CGPA:"));
+if (isNaN(cgpa)) {
+alert("Invalid CGPA. Please refresh the page and enter a valid CGPA.");
+return;
+}
+if (cgpa > 9.0) {
+alert("Selected for the Second Round.");
+} else {
+var email = prompt("Enter your email for the First round selection process:");
+if (email === null) {
+alert("No email entered. Please refresh the page and try again.");
+return;
+}
+if(!validateEmail(email)){
+alert("Invalid email format. Please enter a valid email address.");
+return;
+}
+var mobileNumber = prompt("Enter your mobile number:");
+if (!validateMobileNumber(mobileNumber)) {
+alert("Invalid mobile number. Please enter a 10-digit number without any spaces or special characters.");
+return;
+}
+alert("Welcome " + studentName + "! Thank you for providing your information. We will get back to you soon.");
+}
+}
+}
+</script>
+</head>
+<body>
+<button onclick="performSelectionProcess()">Start Selection Process</button>
+</body>
+</html>
